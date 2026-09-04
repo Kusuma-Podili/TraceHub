@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "tracehub"
+version = "1.0.0"
+description = "Enterprise Software Development Life Cycle (SDLC) Management Platform"
+authors = ["Kusuma Podili <podilikusuma15@gmail.com>"]
+license = "Proprietary"
+readme = "README.md"
+packages = [{include = "backend"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = ">=0.109.0"
+uvicorn = {extras = ["standard"], version = ">=0.27.0"}
+sqlalchemy = ">=2.0.25"
+python-jose = {extras = ["cryptography"], version = ">=3.3.0"}
+passlib = {extras = ["bcrypt"], version = ">=1.7.4"}
+pydantic = ">=2.5.3"
+httpx = ">=0.26.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0.0"
+black = ">=24.1.0"
+flake8 = ">=7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

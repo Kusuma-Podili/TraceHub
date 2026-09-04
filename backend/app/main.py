@@ -8,6 +8,8 @@ from fastapi.responses import FileResponse, JSONResponse
 from backend.app.database import engine, Base, SessionLocal
 import backend.app.models  # Ensure all models are registered
 from backend.app.routers import (
+    agile,
+    analytics,
     auth_router,
     projects_router,
     phases_router,
@@ -76,6 +78,8 @@ app.include_router(deployments_router)
 app.include_router(maintenance_router)
 app.include_router(reports_router)
 app.include_router(notifications_router)
+app.include_router(agile.router)
+app.include_router(analytics.router)
 
 @app.get("/api/health")
 def health_check():

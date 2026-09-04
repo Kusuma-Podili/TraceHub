@@ -51,9 +51,29 @@ The platform initializes on first launch with realistic demo projects (including
 
 ## Quickstart & Installation
 
-### Requirements
-- Python 3.10+
-- Installed packages: `fastapi`, `uvicorn`, `sqlalchemy`, `python-jose`, `pytest`
+### Dependency Installation
+
+The project provides dependency manifests and locked versions for both Python backend and client-side tooling:
+
+#### Option A: Poetry (Recommended Backend Workflow)
+```powershell
+# Install locked backend dependencies using poetry.lock
+poetry install
+```
+
+#### Option B: Standard Pip
+```powershell
+# Install from requirements.txt
+pip install -r requirements.txt
+```
+
+#### Client & Tooling Dependencies (Node.js)
+```powershell
+# Install client-side tooling dependencies using package-lock.json
+npm ci
+# or
+npm install
+```
 
 ### Launch the Application
 ```powershell
@@ -65,10 +85,17 @@ http://127.0.0.1:8000
 ```
 
 ### Running Automated Test Suite
-Run the 15+ automated test cases covering authentication, SDLC gate validation, Kanban transitions, defect lifecycles, and reports:
+Run the 17 automated test cases covering authentication, SDLC gate validation, Kanban transitions, defect lifecycles, and reports:
 ```powershell
 python -m pytest backend/app/tests/ -v
 ```
+
+---
+
+## License
+
+**Proprietary and Confidential.** All rights reserved.  
+Copyright © 2026 TraceHub. Unauthorized copying, distribution, or modification of this software and associated documentation files via any medium is strictly prohibited.
 
 ---
 
