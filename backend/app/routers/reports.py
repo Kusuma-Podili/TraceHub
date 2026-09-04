@@ -171,3 +171,28 @@ def get_custom_report(
         return {"report_type": report_type, "count": len(data), "data": data}
 
     raise HTTPException(status_code=400, detail=f"Unsupported report type: {report_type}")
+
+
+@router.get("/export/csv")
+def export_projects_report_csv(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    """Export project portfolio deliverables and progress metrics to CSV format."""
+    import csv
+    import io
+    from fastapi.responses import Response
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["Project ID", "Code", "Name", "Current Phase", "Progress (%)", "Status"])
+
+    projects = db.query(Project).all()
+    for p in projects:
+        writer.writerow([p.id, p.code, p.name, p.current_phase, p.progress_percent, p.status])
+
+    return Response(
+        content=output.getvalue(),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=tracehub_projects_report.csv"}
+    )
